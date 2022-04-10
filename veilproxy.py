@@ -67,7 +67,7 @@ class NodeConnection:
     def countersStr(self):
         failedSubmissionCount = self.submissionCounter - self.successfulSubmissionCounter
         ff = '\x1b[31m{}\x1b[0m' if failedSubmissionCount > 0 else '{}'
-        return '(\x1b[32m{}\x1b[0m/' + ff + ')'.format(
+        return ('(\x1b[32m{}\x1b[0m/' + ff + ')').format(
             self.successfulSubmissionCounter, failedSubmissionCount)
 
     async def submit(self, header_hash, mix_hash, nonce):
