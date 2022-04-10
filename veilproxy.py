@@ -78,12 +78,10 @@ class NodeConnection:
                 'method': 'pprpcsb',
                 'params': [header_hash, mix_hash, nonce],
             }
-            if logging.isEnabledFor(logging.DEBUG):
-                logging.debug('Submitting block to node %s', json.dumps(data))
+            logging.debug('Submitting block to node %s', json.dumps(data))
             async with self.session.post(self.url, json=data) as resp:
                 res = await resp.json()
-                if logging.isEnabledFor(logging.DEBUG):
-                    logging.debug('Block submission response %s', json.dumps(res))
+                logging.debug('Block submission response %s', json.dumps(res))
                 if 'result' in res:
                     if res['result'] is True:
                         self.successfulSubmissionCounter += 1
