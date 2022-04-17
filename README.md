@@ -1,10 +1,14 @@
 # VEIL node stratum proxy
 
-This proxy written in python implements a simple stratum protocol which most of the mining software out there should understand (tested with [T-Rex](https://trex-miner.com/) miner), in order to be able to solo mine [VEIL](https://veil-project.com/) directly using a full local node and the mining software of your choice, without the need to use a mining pool or the only miner which currently supports mining directly to a node (TT-Miner).
+This proxy written in python implements a simple stratum protocol which most of the mining software out there should understand (tested with [T-Rex](https://trex-miner.com/) and [xmrig](https://xmrig.com/) miner), in order to be able to solo mine [VEIL](https://veil-project.com/) directly using a full local node and the mining software of your choice, without the need to use a mining pool or the only miner which currently supports mining directly to a node (TT-Miner).
+
+The proxy can be used to mine both ProgPoW VEIL and RandomX VEIL.
 
 ## Setup
 
 1. **Setup your VEIL full node** as described in https://veil-project.com/blog/2020-mineafterhardfork/.
+
+   **RandomX NOTE**: RandomX mining requires changes to the wallet which are not yet released. Until then, you have to build it from source https://github.com/us77ipis/veil. This note will be updated once the changes are merged into https://github.com/Veil-Project/veil.
 
    An example working `veil.conf` file is the following:
    ```
@@ -15,7 +19,6 @@ This proxy written in python implements a simple stratum protocol which most of 
    rpcport=5556
    server=1
    listen=1
-   mine=progpow
    miningaddress=<your-mining-address>
    ```
    **NOTE**: Replace `rpcuser`, `rpcpassword` and `<your-mining-address>` accordingly.
@@ -30,7 +33,9 @@ This proxy written in python implements a simple stratum protocol which most of 
    Start the proxy:
    ```bash
    # Replace veil:veil by your rpcuser:rpcpassword from veil.conf
-   python3 veilproxy.py -p 5555 -n http://veil:veil@127.0.0.1:5556
+   # You can use option -a to change the listen address
+   # You can use option -j to show jobs in the log
+   python3 veilproxy.py -p 5555 -n http://veil:veil@127.0.0.1:5556 -j
    ```
 
 3. **Start your miner!**
@@ -39,6 +44,13 @@ This proxy written in python implements a simple stratum protocol which most of 
    ```bash
    ./t-rex --validate-shares -a progpow-veil --coin veil -o stratum+tcp://127.0.0.1:5555 -u x -p x
    ```
+
+   Example for xmrig miner (username and password for the proxy can be anything):
+   ```bash
+   ./xmrig -o 127.0.0.1:5555 -u x -p x
+   ```
+   **NOTE**: xmrig with VEIL support is not yet released. Until then, you have to build it from source https://github.com/us77ipis/xmrig-veil. This note will be updated once the changes are merged into https://github.com/xmrig/xmrig.
+
 
 ## Donations
 
