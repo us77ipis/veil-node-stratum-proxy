@@ -51,7 +51,7 @@ class NodeConnection:
         raise NotImplementedError("Not implemented yet")
 
     async def run(self):
-        async with aiohttp.ClientSession() as self.session:
+        async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=2000)) as self.session:
             while True:
                 try:
                     data = self.getblocktemplateJSON()
