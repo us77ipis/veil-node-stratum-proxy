@@ -1,6 +1,6 @@
 # VEIL node stratum proxy
 
-This proxy written in python implements a simple stratum protocol which most of the mining software out there should understand (tested with [T-Rex](https://trex-miner.com/) and [xmrig](https://xmrig.com/) miner), in order to be able to solo mine [VEIL](https://veil-project.com/) directly using a full local node and the mining software of your choice, without the need to use a mining pool or the only miner which currently supports mining directly to a node (TT-Miner).
+This proxy written in python implements a simple stratum protocol which most of the mining software out there should understand (tested with [T-Rex](https://trex-miner.com/), [WildRig](https://github.com/andru-kun/wildrig-multi) and [xmrig](https://xmrig.com/) miner), in order to be able to solo mine [VEIL](https://veil-project.com/) directly using a full local node and the mining software of your choice, without the need to use a mining pool or the only miner which currently supports mining directly to a node (TT-Miner).
 
 The proxy can be used to mine both ProgPoW VEIL and RandomX VEIL.
 
@@ -38,18 +38,32 @@ The proxy can be used to mine both ProgPoW VEIL and RandomX VEIL.
    python3 veilproxy.py -p 5555 -n http://veil:veil@127.0.0.1:5556 -j
    ```
 
-3. **Start your miner!**
+3. **Start your miner!** Note that username and password for the proxy can be anything.
 
-   Example for T-Rex miner (username and password for the proxy can be anything):
+   Example for **T-Rex ProgPoW** miner:
    ```bash
+   # For Linux
    ./t-rex --validate-shares -a progpow-veil --coin veil -o stratum+tcp://127.0.0.1:5555 -u x -p x
+   # For Windows
+   t-rex.exe --validate-shares -a progpow-veil --coin veil -o stratum+tcp://127.0.0.1:5555 -u x -p x
    ```
 
-   Example for xmrig miner (username and password for the proxy can be anything):
+   Example for **WildRig ProgPoW** miner:
    ```bash
-   ./xmrig -o 127.0.0.1:5555 -u x -p x
+   # For Linux
+   ./wildrig --print-full -a progpow-veil -o 127.0.0.1:5555 -u x -p x
+   # For Windows
+   wildrig.exe --print-full -a progpow-veil -o 127.0.0.1:5555 -u x -p x
    ```
-   **NOTE**: xmrig with VEIL support is not yet released. Until then, you have to build it from source https://github.com/us77ipis/xmrig-veil. This note will be updated once the changes are merged into https://github.com/xmrig/xmrig.
+
+   Example for **xmrig RandomX** miner:
+   ```bash
+   # For Linux
+   ./xmrig -o 127.0.0.1:5555 -u x -p x
+   # For Windows
+   xmrig.exe -o 127.0.0.1:5555 -u x -p x
+   ```
+   **NOTE**: xmrig with VEIL support is not yet released. Until then, you have to build it from source. To do this, follow the [**official xmrig build guide**](https://xmrig.com/docs/miner/build), but use the repository https://github.com/us77ipis/xmrig-veil instead of https://github.com/xmrig/xmrig. This note will be updated once the changes are merged into the official xmrig repository.
 
 
 ## Donations
