@@ -8,7 +8,7 @@ The proxy can be used to mine both ProgPoW VEIL and RandomX VEIL.
 
 1. **Setup your VEIL full node** as described in https://veil-project.com/blog/2020-mineafterhardfork/.
 
-   **RandomX NOTE**: RandomX mining requires changes to the wallet which are not yet released. ~~Until then, you have to build it from source https://github.com/us77ipis/veil. This note will be updated once the changes are merged into https://github.com/Veil-Project/veil.~~ **Update**: Changes are now merged into `master` branch of https://github.com/Veil-Project/veil and although still not officially released you can already download pre-built binaries that contain the changes at https://github.com/Veil-Project/veil/actions/runs/2199663753 (you have to be logged in at GitHub). Next update will be once the changes are officially released.
+   **NOTE**: Make sure you are running **wallet version [v1.2.4.1](https://github.com/Veil-Project/veil/releases) or higher**.
 
    An example working `veil.conf` file is the following:
    ```
