@@ -1,5 +1,8 @@
 # VEIL node stratum proxy
 
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/us77ipis/veil-node-stratum-proxy?display_name=tag&cacheSeconds=3600)](https://github.com/us77ipis/veil-node-stratum-proxy/releases)
+[![GitHub Release Date](https://img.shields.io/github/release-date/us77ipis/veil-node-stratum-proxy?cacheSeconds=3600)](https://github.com/us77ipis/veil-node-stratum-proxy/releases)
+
 This proxy written in python implements a simple stratum protocol which most of the mining software out there should understand (tested with [T-Rex](https://trex-miner.com/), [WildRig](https://github.com/andru-kun/wildrig-multi) and [xmrig](https://xmrig.com/) miner), in order to be able to solo mine [VEIL](https://veil-project.com/) directly using a full local node and the mining software of your choice, without the need to use a mining pool or the only miner which currently supports mining directly to a node (TT-Miner).
 
 The proxy can be used to mine both ProgPoW VEIL and RandomX VEIL.
