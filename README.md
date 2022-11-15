@@ -8,7 +8,7 @@ The proxy can be used to mine both ProgPoW VEIL and RandomX VEIL.
 
 1. **Setup your VEIL full node** as described in https://veil-project.com/blog/2020-mineafterhardfork/.
 
-   **NOTE**: Make sure you are running **wallet version [v1.2.4.1](https://github.com/Veil-Project/veil/releases) or higher**.
+   **NOTE**: Make sure you are running **wallet version [v1.4.0.0](https://github.com/Veil-Project/veil/releases) or higher**.
 
    An example working `veil.conf` file is the following:
    ```
@@ -40,7 +40,7 @@ The proxy can be used to mine both ProgPoW VEIL and RandomX VEIL.
 
 3. **Start your miner!** Note that username and password for the proxy can be anything.
 
-   Example for **T-Rex ProgPoW** miner:
+   Example for **T-Rex ProgPoW** miner (**T-Rex 0.26.6 or higher required**):
    ```bash
    # For Linux
    ./t-rex --validate-shares -a progpow-veil --coin veil -o stratum+tcp://127.0.0.1:5555 -u x -p x
@@ -48,7 +48,7 @@ The proxy can be used to mine both ProgPoW VEIL and RandomX VEIL.
    t-rex.exe --validate-shares -a progpow-veil --coin veil -o stratum+tcp://127.0.0.1:5555 -u x -p x
    ```
 
-   Example for **WildRig ProgPoW** miner:
+   Example for **WildRig ProgPoW** miner (**WildRig 0.32.1 or higher required**):
    ```bash
    # For Linux
    ./wildrig --print-full -a progpow-veil -o 127.0.0.1:5555 -u x -p x

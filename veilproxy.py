@@ -159,6 +159,12 @@ class PPNodeConnection(NodeConnection):
         }
 
     def setJobId(self, job):
+        if 'pprpcheader' in job and 'pprpcnextepoch' not in job:
+            self.logger.critical('Update your VEIL wallet to version 1.4.0.0 or higher')
+            exit(1)
+        elif 'pprpcheader' not in job:
+            self.logger.critical('Your VEIL wallet is either misconfigured or not up-to-date. Did you set a miningaddress in the veil.conf?')
+            exit(1)
         job['job_id'] = job['pprpcheader']
 
 
@@ -327,6 +333,9 @@ class ServerProtocol(asyncio.Protocol):
                         False,
                         job['height'],
                         job['bits'],
+                        job['pprpcepoch'],
+                        job['pprpcnextepoch'],
+                        job['pprpcnextepochheight'],
                     ]
                 })
             elif self.node == RXNODE:
