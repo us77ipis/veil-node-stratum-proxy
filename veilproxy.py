@@ -366,7 +366,8 @@ class ServerProtocol(asyncio.Protocol):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Stratum proxy to solo mine to VEIL node.")
+    parser = argparse.ArgumentParser(prog="veilproxy",
+                                     description="Stratum proxy to solo mine to VEIL node.")
     parser.add_argument('-a', '--address', default='0.0.0.0',
                         help="the address to listen on, defaults to 0.0.0.0")
     parser.add_argument('-p', '--port', type=int, required=True,
@@ -378,6 +379,7 @@ def main():
                         help="show jobs in the log")
     parser.add_argument('-v', '--verbose', '--debug', action="store_true",
                         help="set log level to debug")
+    parser.add_argument('--version', action='version', version='%(prog)s 2.0.0')
     args = parser.parse_args()
 
     global SHOW_JOBS
