@@ -386,14 +386,15 @@ def main():
     PPNODE = PPNodeConnection(args.node, progpowLogger)
     RXNODE = RXNodeConnection(args.node, randomxLogger)
 
-    loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
     coro = loop.create_server(ServerProtocol, args.address, args.port)
     server = loop.run_until_complete(coro)
 
     logging.info('Serving on {}:{}'.format(*server.sockets[0].getsockname()))
 
-    ppnode_task = asyncio.ensure_future(PPNODE.run())
-    rxnode_task = asyncio.ensure_future(RXNODE.run())
+    ppnode_task = loop.create_task(PPNODE.run())
+    rxnode_task = loop.create_task(RXNODE.run())
 
     try:
         loop.run_forever()
