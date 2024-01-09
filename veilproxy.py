@@ -230,6 +230,11 @@ class ServerProtocol(asyncio.Protocol):
         try:
             d = json.loads(data)
             id = d['id'] if 'id' in d else None
+            method = d.get('method')
+            #Handle keepalived
+            if method == 'keepalived':
+                self.handle_keepalived(d)
+                return
             if 'method' in d and 'params' in d:
                 if self.node == PPNODE and d['method'] == 'mining.submit':
                     if len(d['params']) == 5:
@@ -314,6 +319,10 @@ class ServerProtocol(asyncio.Protocol):
                     })
         except json.JSONDecodeError:
             pass
+    # Handle keepalived
+    def handle_keepalived(self, data):
+        # Acknowledge the receipt of the message
+        self.send({'id': data.get('id'), 'result': 'ack'})    
 
     def onNewJob(self, job=None, loginId=None):
         if not job:
